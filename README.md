@@ -1,38 +1,38 @@
 # Evolutionary-Algorithms-Partition-Problem
-Introduction 
+## Introduction 
 This project contains 2 main parts:
 1. Solving the partition problem by using an evolutionary algorithm and using the EC_KITY library.
 2. Added a new feature to the EC-KITY library: Live graph
 
-The partition problem
+## The partition problem
 Partition problem is to determine whether a given set can be partitioned into two subsets such that the sum of elements in both subsets is the same. 
 The partition problem is NP-complete.
 In our project we solve the Partition problem with Genetic Algorithm (GA), using EC-KitY, written in python.
 In addition, we have added virtualization in a bar graph that can be added as a supplement to the existing EC-KitY.
 
-
-
-
-
-
-
-
+![image](https://user-images.githubusercontent.com/79116144/210153158-ca6a1f4a-968e-42b9-b13e-aea0d458ab38.png)
 
 Partition problem in our implementation:
 As input to the problem we randomly generate a group of numbers that will be in an array. We chose to represent the group as an array of the same size as the input array with zeros and ones Each element in the array in position i that contains the digit 0 signifies that the element in the input array in position i is in one group, and each element in the array in position j that contains the digit 1 signifies that the element in the input array in position j is in the other group.
 
-
-Dependencies
+## Dependencies
 Matplotlib
-EC-KitY
-For the basic evolution mode, EC-KitY requires:
-•	numpy (>=1.14.6)
-•	pandas (>=0.25.0)
-•	overrides (>= 6.1.0)
-For sklearn mode, EC-KitY additionally requires:
-•	scikit-learn (>=0.24.2)
-Methods
 
+EC-KitY
+
+For the basic evolution mode, EC-KitY requires:
+
+•	numpy (>=1.14.6)
+
+•	pandas (>=0.25.0)
+
+•	overrides (>= 6.1.0)
+
+For sklearn mode, EC-KitY additionally requires:
+
+•	scikit-learn (>=0.24.2)
+
+## Methods
 Main.py:
 In this file we initialized all the details required to send our problem to the EC-KitY tool. 
 
@@ -44,49 +44,41 @@ __init__ - In this function we initialized the input array for the problem, with
 _evaluate_individual – This function checks according to the arrays, the sum of the numbers in the two groups and returns as a fitness value - the absolute value of the subtraction between the sums of the two groups.
 
 
-
-
-
-
-
-Representation
+## Representation
 
 We will represent the problem using row vectors.
+
 Phenotype will be a division of the input into 2 foreign groups
+
 Genotype will be a vector whose length is the length of the input vector with possible values of 0,1. If the member in the i-th place gets the value 1, the member in the i-th place in the input vector will belong to the group "1", and if the member in the i-th place gets the value 0, the member in the i-th place in the input vector will belong to the "0" group (The order is not important)
 
+![image](https://user-images.githubusercontent.com/79116144/210153233-9db880e4-0bbd-4ca7-9b56-787d22a5b747.png)
 
-[5, 1, 30, 21, 9, 11, 7, 6]
-		
+## Fitness
 
-
-[0, 0, 0, 1, 0, 1, 1, 1]
-
-Fitness
 Our goal in this program is to minimize the difference between the sum of the foreign groups in the division of the input vector. Therefore, we will define the fitness of each individual and consider it in the following way:
 The sum of the values of group "1" minus the sum of the values of group "0" in absolute value.
 We will do this by going over the cells of the individual's representation vector and if the i-th cell value is "0" the i-th cell value in the input vector will be added to the group sum "0" and likewise for a cell whose value is "1".
- 
 
-Selection Method – 
+![image](https://user-images.githubusercontent.com/79116144/210153261-eca094d7-ec33-45df-b69b-8601f29941a1.png)
+
+
+## Selection Method – 
+
 We tested both elitism selection and tournament selection and got better results in Tournament Selection:
+
 Elitist selection is a selection strategy where a limited number of individuals with the best fitness values are chosen to pass to the next generation, avoiding the crossover and mutation operators. Elitism prevents the random destruction by crossover or mutation operators of individuals with good genetics. On the other hand,"Tournament Selection" does not prevents the random destruction by crossover or mutation operators of individuals and as a result sometimes yielded better results.
+
 Tournament selection also has several benefits over alternative selection methods for genetic algorithms: it is efficient to code, works on parallel architectures and allows the selection pressure to be easily adjusted.
 
 
+## Experimental setup
 
-
-
-
-
-
-Experimental setup
-שמיר התר
  1. Installing EC-KITY - https://github.com/EC-KitY/EC-KitY
  2. Extract the files to the project folder
  3. Under the PartitionEvaluator class set the constants of the program. (more            in 'short usage tutorial').
 
-Live Graph Feature -
+## Live Graph Feature -
 We have added a new feature to the EC-KITY library.
 This feature is given in the "LiveGraphStatistics" class.
 
